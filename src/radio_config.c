@@ -595,7 +595,7 @@ radio_config_create(
     GBinderLocalRequest* req;
     GBinderWriter writer;
     int status;
-    guint req_code;
+    guint req_code = 0;
 
     radio_base_initialize(&self->base);
     self->interface_type = desc->interface_type;
@@ -660,7 +660,7 @@ radio_config_new_with_version_and_interface_type(
     RADIO_INTERFACE_TYPE interface_type)
 {
     static RadioConfig** instances = NULL;
-    static const RadioConfigInterfaceDesc* interfaces = NULL;
+    const RadioConfigInterfaceDesc* interfaces = NULL;
     gsize num_interfaces = 0;
     const char* binder_device = GBINDER_DEFAULT_HWBINDER;
 

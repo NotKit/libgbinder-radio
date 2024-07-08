@@ -46,11 +46,24 @@ radio_req_name(
     RADIO_REQ req);
 
 const char*
+radio_req_name2(
+    RadioInstance* instance,
+    RADIO_REQ req);
+
+const char*
 radio_resp_name(
+    RADIO_RESP resp);
+const char*
+radio_resp_name2(
+    RadioInstance* instance,
     RADIO_RESP resp);
 
 const char*
 radio_ind_name(
+    RADIO_IND ind);
+const char*
+radio_ind_name2(
+    RadioInstance* instance,
     RADIO_IND ind);
 
 RADIO_RESP
