@@ -195,7 +195,7 @@ test_service_txproc(
         const int count = test_service_req_count(service, code) + 1;
         GBinderReader reader;
 
-        GDEBUG("%s %s %d", iface, radio_req_name(code), count);
+        GDEBUG("%s %s %d", iface, radio_req_name(NULL, code), count);
         g_hash_table_insert(service->req_count, GINT_TO_POINTER(code),
             GINT_TO_POINTER(count));
 

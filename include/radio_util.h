@@ -43,14 +43,17 @@ G_BEGIN_DECLS
 
 const char*
 radio_req_name(
+    RadioInstance* instance,
     RADIO_REQ req);
 
 const char*
 radio_resp_name(
+    RadioInstance* instance,
     RADIO_RESP resp);
 
 const char*
 radio_ind_name(
+    RadioInstance* instance,
     RADIO_IND ind);
 
 RADIO_RESP

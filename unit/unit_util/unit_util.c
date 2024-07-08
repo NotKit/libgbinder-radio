@@ -54,23 +54,23 @@ void
 test_req_name(
     void)
 {
-    g_assert(!radio_req_name(UNKNOWN_REQ));
-    g_assert(!radio_req_name(RADIO_REQ_ANY));
-    g_assert_cmpstr(radio_req_name(RADIO_REQ_GET_ICC_CARD_STATUS),==,
+    g_assert(!radio_req_name(NULL, UNKNOWN_REQ));
+    g_assert(!radio_req_name(NULL, RADIO_REQ_ANY));
+    g_assert_cmpstr(radio_req_name(NULL, RADIO_REQ_GET_ICC_CARD_STATUS),==,
         "getIccCardStatus");
-    g_assert_cmpstr(radio_req_name(RADIO_REQ_START_NETWORK_SCAN),==,
+    g_assert_cmpstr(radio_req_name(NULL, RADIO_REQ_START_NETWORK_SCAN),==,
         "startNetworkScan");
-    g_assert_cmpstr(radio_req_name(RADIO_REQ_SET_SIGNAL_STRENGTH_REPORTING_CRITERIA),==,
+    g_assert_cmpstr(radio_req_name(NULL, RADIO_REQ_SET_SIGNAL_STRENGTH_REPORTING_CRITERIA),==,
         "setSignalStrengthReportingCriteria");
-    g_assert_cmpstr(radio_req_name(RADIO_REQ_SET_SYSTEM_SELECTION_CHANNELS),==,
+    g_assert_cmpstr(radio_req_name(NULL, RADIO_REQ_SET_SYSTEM_SELECTION_CHANNELS),==,
         "setSystemSelectionChannels");
-    g_assert_cmpstr(radio_req_name(RADIO_REQ_EMERGENCY_DIAL),==,
+    g_assert_cmpstr(radio_req_name(NULL, RADIO_REQ_EMERGENCY_DIAL),==,
         "emergencyDial");
-    g_assert_cmpstr(radio_req_name(RADIO_REQ_ENABLE_UICC_APPLICATIONS),==,
+    g_assert_cmpstr(radio_req_name(NULL, RADIO_REQ_ENABLE_UICC_APPLICATIONS),==,
         "enableUiccApplications");
-    g_assert_cmpstr(radio_req_name(RADIO_REQ_START_NETWORK_SCAN_1_4),==,
+    g_assert_cmpstr(radio_req_name(NULL, RADIO_REQ_START_NETWORK_SCAN_1_4),==,
         "startNetworkScan_1_4");
-    g_assert_cmpstr(radio_req_name(RADIO_REQ_START_NETWORK_SCAN_1_5),==,
+    g_assert_cmpstr(radio_req_name(NULL, RADIO_REQ_START_NETWORK_SCAN_1_5),==,
         "startNetworkScan_1_5");
 }
 
@@ -83,23 +83,23 @@ void
 test_resp_name(
     void)
 {
-    g_assert(!radio_resp_name(UNKNOWN_RESP));
-    g_assert(!radio_resp_name(RADIO_RESP_ANY));
-    g_assert_cmpstr(radio_resp_name(RADIO_RESP_GET_ICC_CARD_STATUS),==,
+    g_assert(!radio_resp_name(NULL, UNKNOWN_RESP));
+    g_assert(!radio_resp_name(NULL, RADIO_RESP_ANY));
+    g_assert_cmpstr(radio_resp_name(NULL, RADIO_RESP_GET_ICC_CARD_STATUS),==,
         "getIccCardStatusResponse");
-    g_assert_cmpstr(radio_resp_name(RADIO_RESP_START_NETWORK_SCAN),==,
+    g_assert_cmpstr(radio_resp_name(NULL, RADIO_RESP_START_NETWORK_SCAN),==,
         "startNetworkScanResponse");
-    g_assert_cmpstr(radio_resp_name(RADIO_RESP_SET_SIGNAL_STRENGTH_REPORTING_CRITERIA),==,
+    g_assert_cmpstr(radio_resp_name(NULL, RADIO_RESP_SET_SIGNAL_STRENGTH_REPORTING_CRITERIA),==,
         "setSignalStrengthReportingCriteriaResponse");
-    g_assert_cmpstr(radio_resp_name(RADIO_RESP_SET_SYSTEM_SELECTION_CHANNELS),==,
+    g_assert_cmpstr(radio_resp_name(NULL, RADIO_RESP_SET_SYSTEM_SELECTION_CHANNELS),==,
         "setSystemSelectionChannelsResponse");
-    g_assert_cmpstr(radio_resp_name(RADIO_RESP_EMERGENCY_DIAL),==,
+    g_assert_cmpstr(radio_resp_name(NULL, RADIO_RESP_EMERGENCY_DIAL),==,
         "emergencyDialResponse");
-    g_assert_cmpstr(radio_resp_name(RADIO_RESP_ENABLE_UICC_APPLICATIONS),==,
+    g_assert_cmpstr(radio_resp_name(NULL, RADIO_RESP_ENABLE_UICC_APPLICATIONS),==,
         "enableUiccApplicationsResponse");
-    g_assert_cmpstr(radio_resp_name(RADIO_RESP_START_NETWORK_SCAN_1_4),==,
+    g_assert_cmpstr(radio_resp_name(NULL, RADIO_RESP_START_NETWORK_SCAN_1_4),==,
         "startNetworkScanResponse_1_4");
-    g_assert_cmpstr(radio_resp_name(RADIO_RESP_START_NETWORK_SCAN_1_5),==,
+    g_assert_cmpstr(radio_resp_name(NULL, RADIO_RESP_START_NETWORK_SCAN_1_5),==,
         "startNetworkScanResponse_1_5");
 }
 
@@ -112,17 +112,17 @@ void
 test_ind_name(
     void)
 {
-    g_assert(!radio_ind_name(UNKNOWN_IND));
-    g_assert(!radio_ind_name(RADIO_IND_ANY));
-    g_assert_cmpstr(radio_ind_name(RADIO_IND_RADIO_STATE_CHANGED),==,
+    g_assert(!radio_ind_name(NULL, UNKNOWN_IND));
+    g_assert(!radio_ind_name(NULL, RADIO_IND_ANY));
+    g_assert_cmpstr(radio_ind_name(NULL, RADIO_IND_RADIO_STATE_CHANGED),==,
         "radioStateChanged");
-    g_assert_cmpstr(radio_ind_name(RADIO_IND_NETWORK_SCAN_RESULT),==,
+    g_assert_cmpstr(radio_ind_name(NULL, RADIO_IND_NETWORK_SCAN_RESULT),==,
         "networkScanResult");
-    g_assert_cmpstr(radio_ind_name(RADIO_IND_CURRENT_LINK_CAPACITY_ESTIMATE),==,
+    g_assert_cmpstr(radio_ind_name(NULL, RADIO_IND_CURRENT_LINK_CAPACITY_ESTIMATE),==,
         "currentLinkCapacityEstimate");
-    g_assert_cmpstr(radio_ind_name(RADIO_IND_CURRENT_EMERGENCY_NUMBER_LIST),==,
+    g_assert_cmpstr(radio_ind_name(NULL, RADIO_IND_CURRENT_EMERGENCY_NUMBER_LIST),==,
         "currentEmergencyNumberList");
-    g_assert_cmpstr(radio_ind_name(RADIO_IND_REGISTRATION_FAILED),==,
+    g_assert_cmpstr(radio_ind_name(NULL, RADIO_IND_REGISTRATION_FAILED),==,
         "registrationFailed");
 }
 
