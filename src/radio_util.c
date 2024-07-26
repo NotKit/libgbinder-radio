@@ -205,7 +205,7 @@ radio_ind_name(
 #define RADIO_MODEM_IND_(code,Name,NAME) \
         case RADIO_MODEM_IND_##NAME: return #Name;
         RADIO_MODEM_IND_1(RADIO_MODEM_IND_)
-#undef RADIO_CONFIG_IND_
+#undef RADIO_MODEM_IND_
         case RADIO_MODEM_IND_ANY:
             break;
         }
