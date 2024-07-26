@@ -187,6 +187,7 @@ G_STATIC_ASSERT(G_N_ELEMENTS(radio_interfaces) == RADIO_INTERFACE_COUNT);
 
 static const GBinderClientIfaceInfo radio_aidl_iface_info[] = {
     {RADIO_MODEM, RADIO_MODEM_REQ_LAST},
+    {RADIO_NETWORK, RADIO_NETWORK_1_REQ_LAST},
     {RADIO_SIM, RADIO_SIM_REQ_LAST},
 };
 
@@ -197,6 +198,16 @@ static const char* const radio_modem_indication_ifaces[] = {
 
 static const char* const radio_modem_response_ifaces[] = {
     RADIO_MODEM_RESPONSE,
+    NULL
+};
+
+static const char* const radio_network_indication_ifaces[] = {
+    RADIO_NETWORK_INDICATION,
+    NULL
+};
+
+static const char* const radio_network_response_ifaces[] = {
+    RADIO_NETWORK_RESPONSE,
     NULL
 };
 
@@ -218,6 +229,14 @@ static const RadioInterfaceDesc radio_aidl_interfaces[] = {
         radio_modem_indication_ifaces,
         radio_modem_response_ifaces,
         RADIO_MODEM_REQ_SET_RESPONSE_FUNCTIONS,
+    },
+    {
+        RADIO_INTERFACE_NONE,
+        RADIO_NETWORK_INTERFACE,
+        RADIO_NETWORK,
+        radio_network_indication_ifaces,
+        radio_network_response_ifaces,
+        RADIO_NETWORK_REQ_SET_RESPONSE_FUNCTIONS,
     },
     {
         RADIO_INTERFACE_NONE,
@@ -335,6 +354,7 @@ radio_instance_indication(
 
     if (gutil_strv_contains((const GStrV*)radio_indication_ifaces, iface)
         || gutil_strv_contains((const GStrV*)radio_modem_indication_ifaces, iface)
+        || gutil_strv_contains((const GStrV*)radio_network_indication_ifaces, iface)
         || gutil_strv_contains((const GStrV*)radio_sim_indication_ifaces, iface)) {
         GBinderReader reader;
         guint type;
@@ -441,6 +461,14 @@ radio_instance_response(
             gbinder_reader_read_int32(&reader, &ack_serial);
         } else {
             /* RadioResponseInfo has the same fields/padding between HIDL and AIDL */
+            gsize out_size;
+            info = gbinder_reader_read_parcelable(&reader, &out_size);
+            GASSERT(out_size >= sizeof(RadioResponseInfo));
+        }
+    } else if (gutil_strv_contains((const GStrV*)radio_network_response_ifaces, iface)) {
+        if (code == RADIO_NETWORK_RESP_ACKNOWLEDGE_REQUEST) {
+            gbinder_reader_read_int32(&reader, &ack_serial);
+        } else {
             gsize out_size;
             info = gbinder_reader_read_parcelable(&reader, &out_size);
             GASSERT(out_size >= sizeof(RadioResponseInfo));
