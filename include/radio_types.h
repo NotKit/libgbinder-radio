@@ -69,7 +69,7 @@ typedef enum radio_interface {
 typedef enum radio_aidl_interface {
     RADIO_AIDL_INTERFACE_NONE = 0,
     RADIO_DATA_INTERFACE,
-    // RADIO_MESSAGING_INTERFACE,
+    RADIO_MESSAGING_INTERFACE,
     RADIO_MODEM_INTERFACE,
     RADIO_NETWORK_INTERFACE,
     RADIO_SIM_INTERFACE,
