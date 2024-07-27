@@ -94,6 +94,17 @@ radio_req_name(
         case RADIO_DATA_REQ_ANY:
             break;
         }
+    } else if (instance->interface_aidl == RADIO_MESSAGING_INTERFACE) {
+        switch ((RADIO_MESSAGING_REQ)req) {
+#define RADIO_MESSAGING_REQ_(req,resp,Name,NAME) \
+        case RADIO_MESSAGING_REQ_##NAME: return #Name;
+        RADIO_MESSAGING_CALL_1(RADIO_MESSAGING_REQ_)
+#undef RADIO_MESSAGING_REQ_
+        case RADIO_MESSAGING_REQ_SET_RESPONSE_FUNCTIONS:   return "setResponseFunctions";
+        case RADIO_MESSAGING_REQ_RESPONSE_ACKNOWLEDGEMENT: return "responseAcknowledgement";
+        case RADIO_MESSAGING_REQ_ANY:
+            break;
+        }
     } else if (instance->interface_aidl == RADIO_MODEM_INTERFACE) {
         switch ((RADIO_MODEM_REQ)req) {
 #define RADIO_MODEM_REQ_(req,resp,Name,NAME) \
@@ -190,6 +201,16 @@ radio_resp_name(
         case RADIO_DATA_RESP_ANY:
             break;
         }
+    } else if (instance->interface_aidl == RADIO_MESSAGING_INTERFACE) {
+        switch ((RADIO_MESSAGING_RESP)resp) {
+        case RADIO_MESSAGING_RESP_ACKNOWLEDGE_REQUEST: return "acknowledgeRequest";
+#define RADIO_MESSAGING_RESP_(req,resp,Name,NAME) \
+        case RADIO_MESSAGING_RESP_##NAME: return #Name "Response";
+        RADIO_MESSAGING_CALL_1(RADIO_MESSAGING_RESP_)
+#undef RADIO_MESSAGING_RESP_
+        case RADIO_MESSAGING_RESP_ANY:
+            break;
+        }
     } else if (instance->interface_aidl == RADIO_MODEM_INTERFACE) {
         switch ((RADIO_MODEM_RESP)resp) {
         case RADIO_MODEM_RESP_ACKNOWLEDGE_REQUEST: return "acknowledgeRequest";
@@ -249,6 +270,15 @@ radio_ind_name(
         RADIO_DATA_IND_1(RADIO_DATA_IND_)
 #undef RADIO_DATA_IND_
         case RADIO_DATA_IND_ANY:
+            break;
+        }
+    } else if (instance->interface_aidl == RADIO_MESSAGING_INTERFACE) {
+        switch ((RADIO_MESSAGING_IND)ind) {
+#define RADIO_MESSAGING_IND_(code,Name,NAME) \
+        case RADIO_MESSAGING_IND_##NAME: return #Name;
+        RADIO_MESSAGING_IND_1(RADIO_MESSAGING_IND_)
+#undef RADIO_MESSAGING_IND_
+        case RADIO_MESSAGING_IND_ANY:
             break;
         }
     } else if (instance->interface_aidl == RADIO_MODEM_INTERFACE) {
